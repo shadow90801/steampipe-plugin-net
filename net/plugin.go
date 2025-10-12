@@ -21,6 +21,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			"net_dns_reverse":    tableNetDNSReverse(ctx),
 			"net_http_request":   tableNetHTTPRequest(),
 			"net_tls_connection": tableNetTLSConnection(ctx),
+			"net_whois":          tableNetWhois(ctx),
 		},
 	}
 	return p
